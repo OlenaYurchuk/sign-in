@@ -5,8 +5,15 @@ import toast from 'react-hot-toast';
 import { Toaster } from 'react-hot-toast';
 import { logIn } from "../../redux/auth/operations";
 import { useDispatch } from "react-redux";
+import { FiEye } from "react-icons/fi";
+import { FiEyeOff } from "react-icons/fi";
+import css from "./LoginForm.module.css";
+import { useState } from "react";
 
 export default function LoginForm() {
+	const [password, setPassword] = useState("");
+	const [type, setType] = useState("password");
+
 	const dispatch = useDispatch();
 
 	const validationSchema = Yup.object().shape({
@@ -41,25 +48,42 @@ export default function LoginForm() {
 			});
 	};
 
+	const handleToggle = () => {
+		setType(type === "password" ? "text" : "password");
+	}
+
 	return (
 		<div>
 			<Toaster
 				position="top-center"
 				reverseOrder={false}
 			/>
-
-			<form onSubmit={handleSubmit(onSubmit)}>
-				<div>
-					<label>Email</label>
-					<input type="email" {...register('email')} placeholder="Enter your email" />
-					{errors.email && <p>{errors.email.message}</p>}
+			<form onSubmit={handleSubmit(onSubmit)} autoComplete="off" className={css.form}>
+				<div className={css.wrap}>
+					<label htmlFor="email" className={css.label}>Email</label>
+					<input className={css.input}
+						type="email" {...register('email')}
+						id="email" name="email"
+						placeholder="Enter your email"
+						autoComplete="user's email" />
+					{errors.email && <p className={css.error}>{errors.email.message}</p>}
 				</div>
-				<div>
-					<label>Password</label>
-					<input type="password" {...register('password')} placeholder="Enter your password" />
-					{errors.password && <p>{errors.password.message}</p>}
+				<div className={css.wrap}>
+					<label htmlFor="password" className={css.label}>Password</label>
+					<input className={css.input}
+						type={type} {...register('password')}
+						id="password"
+						name="password"
+						value={password}
+						placeholder="Enter your password"
+						onChange={(e) => setPassword(e.target.value)}
+						autoComplete="current password" />
+					<button type="button" className={css.iconButton} onClick={handleToggle} aria-label="Toggle password visibility">
+						{type === "password" ? <FiEyeOff /> : <FiEye />}
+					</button>
+					{errors.password && <p className={css.error}>{errors.password.message}</p>}
 				</div>
-				<button type="submit" disabled={isSubmitting}>Sign In</button>
+				<button className={css.btn} type="submit" disabled={isSubmitting}>Sign In</button>
 			</form>
 		</div>
 	);

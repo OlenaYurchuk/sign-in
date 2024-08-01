@@ -4,11 +4,11 @@ import css from './LoginPage.module.css';
 
 export default function LoginPage() {
 	return (
-		<div>
+		<div className={css.wrapper}>
 			<div className={css.container}>
 				<h2 className={css.title}>Sign In</h2>
 				<LoginForm />
-				<p>Don`t have an account? <Link to="/signup">Sign Up</Link></p>
+				<p className={css.text}>Don`t have an account? <Link to="/signup" className={css.link}>Sign Up</Link></p>
 			</div>
 		</div>
 	);
