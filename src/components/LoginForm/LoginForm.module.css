@@ -8,7 +8,6 @@
 .wrap {
   display: flex;
   flex-direction: column;
-  position: relative;
 }
 
 .wrap:first-child {
@@ -46,6 +45,7 @@
   font-weight: 400;
   line-height: 24px; /* 150% */
   letter-spacing: -0.16px;
+  width: 100%;
 }
 
 input:active {
@@ -91,6 +91,10 @@ input:active {
 
 .btn:hover {
   background-color: #87d28d;
+}
+
+.passwordBox {
+  position: relative;
 }
 
 .iconButton {

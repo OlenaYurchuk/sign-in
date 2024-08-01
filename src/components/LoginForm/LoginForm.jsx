@@ -70,17 +70,19 @@ export default function LoginForm() {
 				</div>
 				<div className={css.wrap}>
 					<label htmlFor="password" className={css.label}>Password</label>
-					<input className={css.input}
-						type={type} {...register('password')}
-						id="password"
-						name="password"
-						value={password}
-						placeholder="Enter your password"
-						onChange={(e) => setPassword(e.target.value)}
-						autoComplete="current password" />
-					<button type="button" className={css.iconButton} onClick={handleToggle} aria-label="Toggle password visibility">
-						{type === "password" ? <FiEyeOff /> : <FiEye />}
-					</button>
+					<div className={css.passwordBox}>
+						<input className={css.input}
+							type={type} {...register('password')}
+							id="password"
+							name="password"
+							value={password}
+							placeholder="Enter your password"
+							onChange={(e) => setPassword(e.target.value)}
+							autoComplete="current password" />
+						<button type="button" className={css.iconButton} onClick={handleToggle} aria-label="Toggle password visibility">
+							{type === "password" ? <FiEyeOff /> : <FiEye />}
+						</button>
+					</div>
 					{errors.password && <p className={css.error}>{errors.password.message}</p>}
 				</div>
 				<button className={css.btn} type="submit" disabled={isSubmitting}>Sign In</button>
