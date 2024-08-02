@@ -45,19 +45,16 @@ export default function LoginForm() {
 		}
 	});
 
-	const onSubmit = (values) => {
-		dispatch(logIn(values))
-			.unwrap()
-			.then(originalPromiseResult => {
-				localStorage.setItem('token', originalPromiseResult.token);
-				toast.success(`${originalPromiseResult.user.name} welcome back!`);
-			})
-			.catch(() => {
-				toast.error('Incorrect login or password');
-			})
-			.finally(() => {
-				reset();
-			});
+	const onSubmit = async (values) => {
+		try {
+			const result = await dispatch(logIn(values)).unwrap();
+			localStorage.setItem('token', result.data.accessToken);
+			toast.success('Successfully logged in!');
+		} catch (error) {
+			toast.error(error?.message || 'Incorrect login or password');
+		} finally {
+			reset();
+		}
 	};
 
 	const handleToggle = () => {
@@ -70,7 +67,7 @@ export default function LoginForm() {
 	};
 
 	return (
-		<div>
+		<div className={css.formWrap}>
 			<Toaster position="top-center" reverseOrder={false} />
 			<form onSubmit={handleSubmit(onSubmit)} autoComplete="on" className={css.form}>
 				<h2 className={css.title}>Sign In</h2>
@@ -88,11 +85,11 @@ export default function LoginForm() {
 									{...field}
 									className={`${css.input} ${isTouched && isError ? css.errorInput : ''}`}
 									type="email"
-									id="email" name="email"
+									id="email"
 									placeholder="Enter your email"
 									autoComplete="username"
 									aria-invalid={errors.email ? "true" : "false"}
-									aria-describedby="email-error"
+									aria-describedby={errors.email ? "email-error" : undefined}
 									onBlur={() => handleBlur('email')}
 								/>
 							)
