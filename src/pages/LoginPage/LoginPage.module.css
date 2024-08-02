@@ -1,5 +1,5 @@
 .wrapper {
-  max-width: 343px;
+  max-width: 320px;
   width: 100%;
   margin: 16px;
   padding: 24px 16px 216px 16px;
@@ -7,24 +7,16 @@
   background: #f0eff4;
 }
 
-.container {
-  display: flex;
-  width: 311px;
-  flex-direction: column;
-  align-items: flex-start;
+.logoBox {
+  margin-bottom: 172px;
 }
 
-.title {
-  color: #323f47;
-
-  /* Mobile/H2 */
-  font-family: Poppins;
-  font-size: 32px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 32px; /* 100% */
-  letter-spacing: -0.32px;
-  margin-bottom: 32px;
+.container {
+  display: flex;
+  width: 288px;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0 auto;
 }
 
 .text {
@@ -48,4 +40,53 @@
   letter-spacing: -0.14px;
   text-decoration-line: underline;
   cursor: pointer;
+}
+
+@media screen and (min-width: 375px) {
+  .wrapper {
+    max-width: 343px;
+  }
+
+  .container {
+    width: 311px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .wrapper {
+    max-width: 704px;
+    margin: 32px;
+    padding: 32px 32px 281px 32px;
+  }
+
+  .logoBox {
+    margin-bottom: 115px;
+  }
+
+  .container {
+    width: 436px;
+  }
+
+  .text {
+    font-size: 16px;
+    line-height: 24px; /* 150% */
+    letter-spacing: -0.16px;
+  }
+
+  .link {
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.16px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .wrapper {
+    max-width: 672px;
+    padding-bottom: 169px;
+  }
+
+  .logoBox {
+    margin-bottom: 113px;
+  }
 }

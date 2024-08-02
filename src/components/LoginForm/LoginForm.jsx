@@ -73,6 +73,7 @@ export default function LoginForm() {
 		<div>
 			<Toaster position="top-center" reverseOrder={false} />
 			<form onSubmit={handleSubmit(onSubmit)} autoComplete="on" className={css.form}>
+				<h2 className={css.title}>Sign In</h2>
 				<div className={css.wrap}>
 					<label htmlFor="email" className={css.label}>Email</label>
 					<Controller
