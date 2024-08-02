@@ -48,6 +48,16 @@
   width: 100%;
 }
 
+.input:hover,
+.input:focus {
+  box-shadow: 7px 5px 29px -18px rgba(50, 63, 71, 1);
+}
+
+.input:focus {
+  box-shadow: 7px 5px 29px -18px rgba(50, 63, 71, 1);
+  transform: scale(1.01);
+}
+
 input:active {
   border: 1px solid rgba(47, 47, 47, 0.4);
 }
@@ -62,6 +72,15 @@ input:active {
   font-weight: 400;
   line-height: 18px; /* 128.571% */
   letter-spacing: -0.14px;
+}
+
+.errorInput {
+  border: 1px solid #ef5050;
+  color: #ef5050;
+}
+
+.errorInput + .iconButton {
+  color: #ef5050;
 }
 
 .btn {
