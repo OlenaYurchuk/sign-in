@@ -18,7 +18,8 @@ export default function LoginForm() {
 
 	const validationSchema = Yup.object().shape({
 		email: Yup.string()
-			.email('Invalid email address')
+			.email()
+			.matches('^(?!.*@[^,]*,)', 'Invalid email')
 			.required('Email is required'),
 		password: Yup.string()
 			.required('Password is required')
@@ -26,7 +27,8 @@ export default function LoginForm() {
 			.matches(
 				/^(?=.*[A-Za-z])(?=.*\d)/,
 				'Password must contain at least one letter and one number'
-			),
+			)
+			.matches('[a-zA-Z]', 'Password can only contain Latin letters.'),
 	});
 
 	const { register, handleSubmit, formState: { errors, isSubmitting }, reset } = useForm({
@@ -58,7 +60,7 @@ export default function LoginForm() {
 				position="top-center"
 				reverseOrder={false}
 			/>
-			<form onSubmit={handleSubmit(onSubmit)} autoComplete="off" className={css.form}>
+			<form onSubmit={handleSubmit(onSubmit)} autoComplete="on" className={css.form}>
 				<div className={css.wrap}>
 					<label htmlFor="email" className={css.label}>Email</label>
 					<input className={css.input}
